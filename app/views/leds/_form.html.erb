@@ -1,0 +1,17 @@
+<%= form_for(@led) do |f| %>
+  <% if @led.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@led.errors.count, "error") %> prohibited this led from being saved:</h2>
+
+      <ul>
+      <% @led.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

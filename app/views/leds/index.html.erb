@@ -1,0 +1,23 @@
+<h1>Listing leds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leds.each do |led| %>
+      <tr>
+        <td><%= link_to 'Show', led %></td>
+        <td><%= link_to 'Edit', edit_led_path(led) %></td>
+        <td><%= link_to 'Destroy', led, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Led', new_led_path %>
