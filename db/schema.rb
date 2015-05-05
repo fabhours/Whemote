@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505064703) do
+ActiveRecord::Schema.define(version: 20150505093603) do
 
   create_table "colors", force: true do |t|
     t.integer  "red"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20150505064703) do
   end
 
   create_table "leds", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "integer"
+  end
+
+  create_table "lights", force: true do |t|
+    t.integer  "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

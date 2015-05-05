@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LedTest < ActiveSupport::TestCase
+class LightTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
