@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>State:</strong>
+  <%= @appliance.name %>
+  <%= @appliance.image %>
+  <%= @appliance.state %>
+</p>
+
+<%= link_to 'Edit', edit_appliance_path(@appliance) %> |
+<%= link_to 'Back', appliances_path %>
