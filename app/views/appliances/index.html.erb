@@ -1,29 +1,62 @@
-<h1>Listing appliances</h1>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">My Appliances</a>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>State</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+             <%=link_to "Add New Appliance",new_appliance_path%>
+      </li>
+    </ul>
+    
+  </div><!-- /.container-fluid -->
+</nav>
 
-  <tbody>
-    <% @appliances.each do |appliance| %>
-      <tr>
-        <td><%= appliance.name %></td>
-        <td><%= appliance.image %></td>
-        <td><%= appliance.state %></td>
-        <td><%= link_to 'Show', appliance %></td>
-        <td><%= link_to 'Edit', edit_appliance_path(appliance) %></td>
-        <td><%= link_to 'Destroy', appliance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+ <div class="col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+</div>
 
-<br>
+<div class="col-md-10">
+<% @appliances.each do |appliance| %>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3"><%= image_tag appliance.image %><br>
+    <%= appliance.name %>
+  </div>
+  <div class="col-md-3"><%if appliance.state == true %>
+    <a href=<%=edit_appliance_path(appliance)%>>
+      <button type="button" class="btn btn-success">ON
+      </button>
+    </a>
+    <%end%>
 
-<%= link_to 'New Appliance', new_appliance_path %>
+    <%if appliance.state == false %>
+    <a href=<%=edit_appliance_path(appliance)%>>
+      <button type="button" class="btn btn-danger">OFF
+      </button>
+    </a>
+    <%end%>
+  </div>
+
+  <div class="col-md-3"><td><%= link_to 'Show', appliance %></td>
+    <td><%= link_to 'Destroy', appliance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </div> 
+   
+</div>
+<hr>   
+<% end %>
+</div>
+
