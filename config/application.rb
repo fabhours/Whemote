@@ -21,6 +21,5 @@ module Iot
     # config.i18n.default_locale = :de
   end
 
-  config.assets.paths += %W("#{Rails.root}/vendor/assets/fonts")
   
 end
