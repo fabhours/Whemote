@@ -42,7 +42,8 @@ class AppliancesController < ApplicationController
   def update
     respond_to do |format|
       if @appliance.update(appliance_params)
-        format.html { redirect_to @appliance, notice: 'Appliance was successfully updated.' }
+        # format.html { redirect_to @appliance, notice: 'Appliance was successfully updated.' }
+        format.html { redirect_to appliances_path}
         format.json { render :show, status: :ok, location: @appliance }
       else
         format.html { render :edit }
