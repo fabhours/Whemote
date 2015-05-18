@@ -4,7 +4,7 @@ class AppliancesController < ApplicationController
   # GET /appliances
   # GET /appliances.json
   def index
-    @appliances = Appliance.all
+    @appliances = Appliance.order("created_at desc")
   end
 
   # GET /appliances/1
@@ -70,6 +70,6 @@ class AppliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appliance_params
-      params.require(:appliance).permit(:name, :image, :state)
+      params.require(:appliance).permit(:name, :image, :state, :port)
     end
 end

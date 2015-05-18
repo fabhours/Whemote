@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507093047) do
+ActiveRecord::Schema.define(version: 20150518022331) do
 
   create_table "appliances", force: true do |t|
     t.boolean  "state"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150507093047) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "image"
+    t.integer  "port"
   end
 
   create_table "colors", force: true do |t|

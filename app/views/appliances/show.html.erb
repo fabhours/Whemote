@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>State:</strong>
+  
+  <strong>Name:</strong>
   <%= @appliance.name %>
-  <%= @appliance.image %>
-  <%= @appliance.state %>
+  <strong>Port:</strong>
+  <%= @appliance.port %>
 </p>
 
 <%= link_to 'Edit', edit_appliance_path(@appliance) %> |

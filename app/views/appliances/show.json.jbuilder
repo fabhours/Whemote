@@ -1,1 +1,1 @@
-json.extract! @appliance, :id, :name, :image, :state, :created_at, :updated_at
+json.extract! @appliance, :id, :name, :image, :state, :port, :created_at, :updated_at
