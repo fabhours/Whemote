@@ -70,6 +70,6 @@ class AppliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appliance_params
-      params.require(:appliance).permit(:name, :image, :state, :port)
+      params.require(:appliance).permit(:name, :image, :state, :port) 
     end
 end
