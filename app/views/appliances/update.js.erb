@@ -1,16 +1,6 @@
 
 $('#saved_message').text('<%= @msg %>');
 
-
-// if (<%= @current_button_state %> == true){
-// 	$('#'+'<%= @current_button_id %>').html("ON")
-// 	.attr("href", "/appliances/<%= @current_button_id %>?appliance%5Bstate%5D=false");
-// }
-// else if (<%= @current_button_state %> == false){
-// 	$('#'+'<%= @current_button_id %>').html("OFF")
-// 	.attr("href", "/appliances/<%= @current_button_id %>?appliance%5Bstate%5D=true");;
-// }
-
 if (<%= @current_button_state %> == true){
 	$('#'+'<%= @current_button_id %>').parent().attr('class', 'btn btn-success');
 	$('#'+'<%= @current_button_id %>').html("ON")
