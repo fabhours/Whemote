@@ -26,6 +26,7 @@
     <li><a href="#">Reports</a></li>
     <li><a href="#">Analytics</a></li>
     <li><a href="#">Export</a></li>
+    <li id="saved_message">MESSAGE</li>
   </ul>
 </div>
 
@@ -36,14 +37,19 @@
     <div class="col-md-3"><%= image_tag appliance.image %><br>
       <%= link_to appliance.name, appliance %>
     </div>
-    <div class="col-md-3"><%if appliance.state == true %>
-      <button type="button" class="btn btn-success"><%=link_to "ON", appliance_path(appliance,  appliance:{state: :false}), method: :put%></button>  
 
+    <div class="col-md-3" id="btn">
+      <%if appliance.state == true %>
+      <button type="button" class="btn btn-success" id="success">
+      <%=link_to "ON", appliance_path(appliance,  appliance:{state: :false}), method: :put, remote: true, id: appliance.id %>
+      </button>
       <%end%>
 
       <%if appliance.state == false %>
-      <button type="button" class="btn btn-danger"><%= link_to 'OFF', appliance_path(appliance, appliance:{state: :true}), method: :put %> </button>
-      
+      <button type="button" class="btn btn-danger" id="danger">
+      <%= link_to 'OFF', appliance_path(appliance, appliance:{state: :true}), method: :put, remote: true,
+      id: appliance.id %>
+      </button>
       <%end%>
     </div>
 
