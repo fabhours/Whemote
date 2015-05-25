@@ -51,6 +51,7 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.5.2)
+    hashie (3.4.1)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.13)
@@ -65,6 +66,9 @@ GEM
     mime-types (2.5)
     minitest (5.6.1)
     multi_json (1.11.0)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.18.1-x86-mingw32)
     rack (1.5.2)
@@ -139,6 +143,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth
   pg
   rails (= 4.1.8)
   rails_12factor
