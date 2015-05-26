@@ -1,5 +1,6 @@
 class AppliancesController < ApplicationController
   before_action :set_appliance, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /appliances
   # GET /appliances.json
@@ -47,8 +48,13 @@ class AppliancesController < ApplicationController
         @current_button_id = @appliance.id
         @current_button_state = @appliance.state
         @current_button_name = @appliance.name
-        @msg = "#{@current_button_id}:#{@current_button_name} is now #{@current_button_state}"
+        if @current_button_state == true
+          @msg = "#{@current_button_name} switched ON"
+        else
+          @msg = "#{@current_button_name} switched OFF"
+        end
         format.js
+        format.html { redirect_to root_path}
       else
         format.html { render :edit }
         format.json { render json: @appliance.errors, status: :unprocessable_entity }
@@ -76,4 +82,4 @@ class AppliancesController < ApplicationController
     def appliance_params
       params.require(:appliance).permit(:name, :image, :state, :port) 
     end
-end
+  end

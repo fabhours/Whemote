@@ -1,5 +1,5 @@
 
-$('#saved_message').text('<%= @msg %>');
+$('.notice').text('<%= @msg %>');
 
 if (<%= @current_button_state %> == true){
 	$('#'+'<%= @current_button_id %>').parent().attr('class', 'btn btn-success');

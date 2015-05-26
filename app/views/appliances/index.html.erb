@@ -13,6 +13,9 @@
 
     <ul class="nav navbar-nav navbar-right">
       <li>
+        <%=link_to "Log Out",destroy_user_session_path, method: :delete%>
+     </li>
+     <li>
        <%=link_to "Add New Appliance",new_appliance_path%>
      </li>
    </ul>
@@ -26,7 +29,6 @@
     <li><a href="#">Reports</a></li>
     <li><a href="#">Analytics</a></li>
     <li><a href="#">Export</a></li>
-    <li id="saved_message">MESSAGE</li>
   </ul>
 </div>
 
@@ -41,21 +43,21 @@
     <div class="col-md-3" id="btn">
       <%if appliance.state == true %>
       <button type="button" class="btn btn-success" id="success">
-      <%=link_to "ON", appliance_path(appliance,  appliance:{state: :false}), method: :put, remote: true, id: appliance.id %>
+        <%=link_to "ON", appliance_path(appliance,  appliance:{state: :false}), method: :put, remote: true, id: appliance.id %>
       </button>
       <%end%>
 
       <%if appliance.state == false %>
       <button type="button" class="btn btn-danger" id="danger">
-      <%= link_to 'OFF', appliance_path(appliance, appliance:{state: :true}), method: :put, remote: true,
-      id: appliance.id %>
+        <%= link_to 'OFF', appliance_path(appliance, appliance:{state: :true}), method: :put, remote: true,
+        id: appliance.id %>
       </button>
       <%end%>
     </div>
 
     <div class="col-md-3">
       <button type="button" class="btn btn-default btn-sm">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><%= link_to ' Destroy', appliance, method: :delete, data: { confirm: 'Are you sure?' } %>
+        PORT <%= appliance.port %>
       </button>
     </div> 
 
