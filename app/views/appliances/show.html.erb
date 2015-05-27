@@ -7,5 +7,5 @@
   </strong>
 </p>
 
-<%= link_to 'Edit', edit_appliance_path(@appliance) %> |
-<%= link_to 'Back', appliances_path %>|<%= link_to ' Destroy', @appliance, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_user_appliance_path(current_user,@appliance) %> |
+<%= link_to 'Back', user_appliances_path(current_user) %>|<%= link_to ' Destroy', user_appliance_path(current_user,@appliance), method: :delete, data: { confirm: 'Are you sure?' } %>

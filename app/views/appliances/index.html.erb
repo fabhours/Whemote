@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">My Appliances</a>
+      <a class="navbar-brand" href="#">Appliances User: <%= current_user.email%> </a>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
@@ -16,7 +16,7 @@
         <%=link_to "Log Out",destroy_user_session_path, method: :delete%>
      </li>
      <li>
-       <%=link_to "Add New Appliance",new_appliance_path%>
+       <%=link_to "Add New Appliance",new_user_appliance_path(current_user)%>
      </li>
    </ul>
 
@@ -32,24 +32,32 @@
   </ul>
 </div>
 
+
+<%if current_user.appliances.size == 0 %>
+<div class="col-md-10">
+  <h1>You Have No Appliance To Control Yet, Go Create One! </h1> <button type="button" class="btn btn-success" id="success"><%=link_to "Add New Appliance",new_user_appliance_path(current_user)%></button>
+</div>
+<%end%>
+
+
 <div class="col-md-10">
   <% @appliances.each do |appliance| %>
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3"><%= image_tag appliance.image %><br>
-      <%= link_to appliance.name, appliance %>
+      <%= link_to appliance.name, user_appliance_path(current_user,appliance) %>
     </div>
 
     <div class="col-md-3" id="btn">
       <%if appliance.state == true %>
       <button type="button" class="btn btn-success" id="success">
-        <%=link_to "ON", appliance_path(appliance,  appliance:{state: :false}), method: :put, remote: true, id: appliance.id %>
+        <%=link_to "ON", user_appliance_path(current_user, appliance,  appliance:{state: :false}), method: :put, remote: true, id: appliance.id %>
       </button>
       <%end%>
 
       <%if appliance.state == false %>
       <button type="button" class="btn btn-danger" id="danger">
-        <%= link_to 'OFF', appliance_path(appliance, appliance:{state: :true}), method: :put, remote: true,
+        <%= link_to 'OFF', user_appliance_path(current_user,appliance, appliance:{state: :true}), method: :put, remote: true,
         id: appliance.id %>
       </button>
       <%end%>

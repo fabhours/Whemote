@@ -1,5 +1,39 @@
-<h1>New appliance</h1>
+<%= form_for(@appliance, url: user_appliances_path) do |f| %>
+  <% if @appliance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @appliance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Back', appliances_path %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.check_box :state %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br>
+    <%= f.text_field :port %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', user_appliances_path %>

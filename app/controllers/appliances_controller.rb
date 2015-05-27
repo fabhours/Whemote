@@ -1,11 +1,12 @@
 class AppliancesController < ApplicationController
-  before_action :set_appliance, only: [:show, :edit, :update, :destroy]
+  before_action :set_appliance, only: [:show, :update, :destroy]
   before_filter :authenticate_user!
 
   # GET /appliances
   # GET /appliances.json
   def index
-    @appliances = Appliance.order("created_at desc")
+    # @appliances = Appliance.order("created_at desc")
+    @appliances =  current_user.appliances.order("created_at desc")
   end
 
   # GET /appliances/1
@@ -18,18 +19,18 @@ class AppliancesController < ApplicationController
     @appliance = Appliance.new
   end
 
-  # GET /appliances/1/edit
+  
   def edit
+    @appliance = current_user.appliances.find(params[:id])
   end
 
   # POST /appliances
   # POST /appliances.json
   def create
     @appliance = Appliance.new(appliance_params)
-
     respond_to do |format|
       if @appliance.save
-        format.html { redirect_to @appliance, notice: 'Appliance was successfully created.' }
+        format.html { redirect_to user_appliances_url, notice: 'Appliance was successfully created.' }
         format.json { render :show, status: :created, location: @appliance }
       else
         format.html { render :new }
@@ -67,7 +68,7 @@ class AppliancesController < ApplicationController
   def destroy
     @appliance.destroy
     respond_to do |format|
-      format.html { redirect_to appliances_url, notice: 'Appliance was successfully destroyed.' }
+      format.html { redirect_to user_appliances_url, notice: 'Appliance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -80,6 +81,6 @@ class AppliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appliance_params
-      params.require(:appliance).permit(:name, :image, :state, :port) 
+      params.require(:appliance).permit(:name, :image, :state, :port, :user_id) 
     end
   end

@@ -4,12 +4,12 @@ $('.notice').text('<%= @msg %>');
 if (<%= @current_button_state %> == true){
 	$('#'+'<%= @current_button_id %>').parent().attr('class', 'btn btn-success');
 	$('#'+'<%= @current_button_id %>').html("ON")
-	.attr("href", "<%=appliance_path(@appliance,  appliance:{state: :false})%>");
+	.attr("href", "<%=user_appliance_path(current_user,@appliance,  appliance:{state: :false})%>");
 }
 else if (<%= @current_button_state %> == false){
 	$('#'+'<%= @current_button_id %>').parent().attr('class', 'btn btn-danger');
 	$('#'+'<%= @current_button_id %>').html("OFF")
-	.attr("href", "<%=appliance_path(@appliance,  appliance:{state: :true})%>");
+	.attr("href", "<%=user_appliance_path(current_user,@appliance,  appliance:{state: :true})%>");
 }
 
 
