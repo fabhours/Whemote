@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <% if @error == 1 %>
+  <div id="error_explanation">
+    <h2>Error, prohibited this appliance from being saved:</h2>
+    <ul>
+      <li>Port <%=@params_port%> had already taken</li>
+    </ul>
+  </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

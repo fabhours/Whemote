@@ -2,23 +2,21 @@ class AppliancesController < ApplicationController
   before_action :set_appliance, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
-  # GET /appliances
-  # GET /appliances.json
+  
   def index
-    @appliances = Appliance.order("created_at desc")
+    @appliances = current_user.appliances.order("created_at desc")
   end
 
-  # GET /appliances/1
-  # GET /appliances/1.json
+  
   def show
   end
 
-  # GET /appliances/new
+  
   def new
     @appliance = Appliance.new
   end
 
-  # GET /appliances/1/edit
+  
   def edit
   end
 
@@ -26,23 +24,35 @@ class AppliancesController < ApplicationController
   # POST /appliances.json
   def create
     @appliance = Appliance.new(appliance_params)
-
-    respond_to do |format|
-      if @appliance.save
-        format.html { redirect_to @appliance, notice: 'Appliance was successfully created.' }
-        format.json { render :show, status: :created, location: @appliance }
-      else
-        format.html { render :new }
-        format.json { render json: @appliance.errors, status: :unprocessable_entity }
+    if(current_user.appliances.find_by_port(appliance_params[:port]))
+      #check if port had already taken
+      @error = 1
+      @params_port = appliance_params[:port]
+      render :new
+    else
+      @appliance.user_id = current_user.id
+      respond_to do |format|
+        if @appliance.save
+          format.html { redirect_to @appliance, notice: 'Appliance was successfully created.' }
+          format.json { render :show, status: :created, location: @appliance }
+        else
+          format.html { render :new }
+          format.json { render json: @appliance.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
-  # PATCH/PUT /appliances/1
-  # PATCH/PUT /appliances/1.json
+
   def update
-    respond_to do |format|
-      if @appliance.update(appliance_params)
+    if(current_user.appliances.find_by_port(appliance_params[:port]))
+      #check if port had already taken
+      @error = 1
+      @params_port = appliance_params[:port]
+      render :edit
+    else
+      respond_to do |format|
+        if @appliance.update(appliance_params) 
         # format.html { redirect_to appliances_path}
         # format.json { render :show, status: :ok, location: @appliance }
         @current_button_id = @appliance.id
@@ -62,20 +72,21 @@ class AppliancesController < ApplicationController
     end
   end
 
-  # DELETE /appliances/1
-  # DELETE /appliances/1.json
-  def destroy
-    @appliance.destroy
-    respond_to do |format|
-      format.html { redirect_to appliances_url, notice: 'Appliance was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+end
 
-  private
+
+def destroy
+  @appliance.destroy
+  respond_to do |format|
+    format.html { redirect_to appliances_url, notice: 'Appliance was successfully destroyed.' }
+    format.json { head :no_content }
+  end
+end
+
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_appliance
-      @appliance = Appliance.find(params[:id])
+      @appliance = current_user.appliances.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
