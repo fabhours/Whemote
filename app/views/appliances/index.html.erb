@@ -15,9 +15,12 @@
       <li>
         <%=link_to "Log Out",destroy_user_session_path, method: :delete%>
      </li>
+<<<<<<< HEAD
      <li>
        <%=link_to "Add New Appliance",new_user_appliance_path(current_user)%>
      </li>
+=======
+>>>>>>> fixauth
    </ul>
 
  </div><!-- /.container-fluid -->
@@ -25,13 +28,15 @@
 
 <div class="col-md-2 sidebar">
   <ul class="nav nav-sidebar">
-    <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-    <li><a href="#">Reports</a></li>
-    <li><a href="#">Analytics</a></li>
-    <li><a href="#">Export</a></li>
+    
+    <li id="add_new_appliance">
+       <%=link_to "Add New Appliance",new_appliance_path%>
+     </li>
+    
   </ul>
 </div>
 
+<<<<<<< HEAD
 
 <%if current_user.appliances.size == 0 %>
 <div class="col-md-10">
@@ -41,6 +46,9 @@
 
 
 <div class="col-md-10">
+=======
+<div class="col-md-8">
+>>>>>>> fixauth
   <% @appliances.each do |appliance| %>
   <div class="row">
     <div class="col-md-3"></div>
@@ -72,5 +80,12 @@
   </div>
   <hr>   
   <% end %>
+</div>
+
+<div class="col-md-2 rightbar">
+  <div class="row note">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
 </div>
 

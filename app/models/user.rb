@@ -4,5 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
+<<<<<<< HEAD
   has_many :appliances 
+=======
+  has_many :appliances
+>>>>>>> fixauth
 end
