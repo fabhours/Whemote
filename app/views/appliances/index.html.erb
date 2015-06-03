@@ -26,11 +26,10 @@
     <li><a href="#">Reports</a></li>
     <li><a href="#">Analytics</a></li>
     <li><a href="#">Export</a></li>
-    <li id="saved_message">MESSAGE</li>
   </ul>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-8">
   <% @appliances.each do |appliance| %>
   <div class="row">
     <div class="col-md-3"></div>
@@ -62,5 +61,11 @@
   </div>
   <hr>   
   <% end %>
+</div>
+
+<div class="col-md-2 right">
+  <ul class="nav nav-sidebar">
+    <li id="saved_message"></li>
+  </ul>
 </div>
 

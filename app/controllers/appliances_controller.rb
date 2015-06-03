@@ -47,7 +47,7 @@ class AppliancesController < ApplicationController
         @current_button_id = @appliance.id
         @current_button_state = @appliance.state
         @current_button_name = @appliance.name
-        @msg = "#{@current_button_id}:#{@current_button_name} is now #{@current_button_state}"
+        @msg = "#{@current_button_name} switched #{@current_button_state}"
         format.js
       else
         format.html { render :edit }
