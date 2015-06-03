@@ -1,4 +1,3 @@
 json.array!(@appliances) do |appliance|
-  json.extract! appliance, :id, :name, :image, :state, :port
-  json.url appliance_url(appliance, format: :json)
+  json.extract! appliance, :name, :state, :port
 end
