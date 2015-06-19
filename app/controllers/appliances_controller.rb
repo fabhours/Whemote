@@ -49,6 +49,7 @@ class AppliancesController < ApplicationController
         @current_button_name = @appliance.name
         @msg = "#{@current_button_name} switched #{@current_button_state}"
         format.js
+        format.html { redirect_to appliances_url, notice: 'Appliance was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @appliance.errors, status: :unprocessable_entity }
